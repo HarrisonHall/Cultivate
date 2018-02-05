@@ -157,7 +157,7 @@ def disaster(garden): #Randomizes disaster in garden
         print('dem elpacas!')
 
 def rules(): #Prints rules
-    print('The game starts in an 8x8 garden, already tilled (brown), so you can p\
+    print('The game starts in an nxn garden, already tilled (brown), so you can p\
 lant either tomatoes, eggplants, or cotton. ')
     print('Tomatoes grow the fastest, with one turn of watering and one turn of w\
 aiting, and yield the least turns and points.')
