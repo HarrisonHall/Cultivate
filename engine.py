@@ -15,110 +15,121 @@ def initGarden(size): #Initialize garden to 0
             garden[i].append(0)
             j += 1
         i += 1
-    print(garden)
     return garden
 
 def printGarden(garden): #Print garden
     for row in garden:
-        print(" T ",end='')
-    print("")
+        print("TTT",end='')
+    print("TTTT")
     for row in garden:
         print("| ",end='')
         for column in row:
-            if garden[row][column] > 9 or garden[row][column] < 0:
-                printValue = " "+garden[row][column]+" "
-                print(printValue,end='')
+            if (column == -1):
+                printValue = " x "
+            elif column == 2:
+                printValue = " t "
+            elif column == 1 or column == 13 or column == 11:
+                printValue = " w "
+            elif column == 14 or column == 12:
+                printValue = " e "
+            elif column >= 21 and column < 27:
+                printValue = " c "
+            elif column == 3 or column == 27 or column == 15:
+                printValue = " r "
+            elif column == 0:
+                printValue = " d "
             else:
-                printValue = " "+garden[row][column]+"  "
-                print(printValue,end='')
+                printValue = " ? "
+            print(printValue,end='')
         print(" |")
+    print("TTTT",end='')
     for row in garden:
-        print(" T ",end='')
+        print("TTT",end='')
 
 def advanceTime(garden): #Advance garden time
     for row in garden:
-        for column in row:
-            plant = copy.shallowcopy(garden[row][column])
-            if plant == 2 or plant == 12 or plant == 14:
-                plant += 1
-            elif (plant >= 21 and plant < 27):
-                plant += 1
+        for column in range(len(row)):
+            if row[column] == 2 or row[column] == 12 or row[column] == 14:
+                row[column] += 1
+            elif (row[column] >= 21 and row[column] < 27):
+                row[column] += 1
 
 def plantPlants(garden, plant): #Plants plants in garden
     for row in garden:
-        for column in row:
-            if garden[row][column] == 0:
-                garden[row][column] = plant
+        for column in range(len(row)):
+            if row[column] == 0:
+                row[column] = plant
 
 def waterElement(x):
     if x == 1 or x == 11 or x == 13:
         x += 1
     elif (x >= 21 and x < 27):
         x += 1
+    return x
                 
 def water(garden,side): #Waters sides of garden
-    height = garden.len()
-    width = garden[0].len()
+    height = len(garden)
+    width = len(garden[0])
     if side == "top":
         i = 0
         while(i < width/2):
-            for plant in garden[i]:
-                waterElement(x)
+            for plant in range(len(garden[i])):
+                garden[i][plant] = waterElement(garden[i][plant])
             i += 1
     elif side == "bot":
-        i = garden.len()-1
+        i = len(garden)-1
         while(i > width/2):
-            for plant in garden[i]:
-                waterElement(x)
+            for plant in range(len(garden[i])):
+                garden[i][plant] = waterElement(garden[i][plant])
             i -= 1
     elif side == "left":
         for row in garden:
             i = 0
-            while(i < width/2):
-                waterElement(garden[row][i])
+            while(i < width/2 + 1):
+                row[i] = waterElement(row[i])
                 i += 1
     elif side == "right":
         for row in garden:
-            i = garden[0].len()-1
-            while(i > width/2):
-                waterElement(garden[row][i])
+            i = len(garden[0])-1
+            while(i > width/2 - 1):
+                row[i] = waterElement(row[i])
                 i -= 1
 
-def till(garden):
+def till(garden): #Tills entire garden
     for row in garden:
-        for column in row:
-            if garden[row][column] == -1:
-                garden[row][column] = 0
+        for column in range(len(row)):
+            if row[column] == -1:
+                row[column] = 0
 
-def collect(garden, score, turnCount):
+def collect(garden, score, turnCount): #Collects ready plants
     for row in garden:
-        for column in row:
-            plant = copy.shallowcopy(garden[row][column])
-            if plant == 3:
-                plant = -1
+        for column in range(len(row)):
+            if row[column] == 3:
+                row[column] = -1
                 score += 1
                 turnCount += .09
-            elif plant == 15:
-                plant = -1
+            elif row[column] == 15:
+                row[column] = -1
                 score += 2
                 turnCount += .26
-            elif plant == 27:
-                plant = -1
+            elif row[column] == 27:
+                row[column] = -1
                 score += 4
                 turnCount += .4
+    return score, turnCount
 
-def disaster(garden):
-    randomNum = random.randrange(0,garden.len()*2-1)
-    if randomNum < garden.len():
+def disaster(garden): #Randomizes disaster in garden
+    randomNum = random.randrange(0,len(garden)*2-1)
+    if randomNum < len(garden):
         i = 0
-        z = garden.len() - 1
+        z = len(garden) - 1
         while(i <= z):
             garden[randomNum][i] = -1
             i += 1
     else:
-        randomNum -= garden.len()
+        randomNum -= len(garden)
         for row in garden:
-            garden[row][randomNum] = -1
+            row[randomNum] = -1
     randomSaying = random.randrange(0,10)
     y = randomSaying
     print('')
@@ -145,13 +156,13 @@ def disaster(garden):
     else:
         print('dem elpacas!')
 
-def rules():
+def rules(): #Prints rules
     print('The game starts in an 8x8 garden, already tilled (brown), so you can p\
-        lant either tomatoes, eggplants, or cotton. ')
+lant either tomatoes, eggplants, or cotton. ')
     print('Tomatoes grow the fastest, with one turn of watering and one turn of w\
-            aiting, and yield the least turns and points.')
+aiting, and yield the least turns and points.')
     print('Eggplants grow slower, with two turns of watering and two turns of wai\
-                ting, and yield a medium number of turns and points.')
+ting, and yield a medium number of turns and points.')
     print('Cotton grows the slowest, with 7 turns of waiting, and yield the most \
 turns and points. Is it worth it?')
     print('Plants needing water will be blue, while plants needing time will be t\
