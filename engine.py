@@ -158,11 +158,11 @@ def disaster(garden): #Randomizes disaster in garden
 
 def rules(): #Prints rules
     print('The game starts in an 8x8 garden, already tilled (brown), so you can p\
-        lant either tomatoes, eggplants, or cotton. ')
+lant either tomatoes, eggplants, or cotton. ')
     print('Tomatoes grow the fastest, with one turn of watering and one turn of w\
-            aiting, and yield the least turns and points.')
+aiting, and yield the least turns and points.')
     print('Eggplants grow slower, with two turns of watering and two turns of wai\
-                ting, and yield a medium number of turns and points.')
+ting, and yield a medium number of turns and points.')
     print('Cotton grows the slowest, with 7 turns of waiting, and yield the most \
 turns and points. Is it worth it?')
     print('Plants needing water will be blue, while plants needing time will be t\

@@ -8,7 +8,7 @@ import os
 # Define some important in-game functions
 
 def gameOver(score):
-    print('\nYou earned a score of',score,', Good job!')
+    print('\nYou earned a score of ',str(score),', Good job!',sep='')
     print('Sadly, it is a game over...')
     answer = input("Would you like to play again? (y/n): ")
     if answer == "n":
