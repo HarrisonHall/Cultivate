@@ -103,3 +103,4 @@ ENV/
 # editing
 *.pyc
 *.py~
+*.pyc~
