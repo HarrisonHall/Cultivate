@@ -5,32 +5,41 @@ import random
 import math
 import copy
 
-def initGarden(garden): #Initialize garden to 0
-    for row in garden:
-        for column in row:
-            garden[row][column] = 0
+def initGarden(size): #Initialize garden to 0
+    i = 0
+    garden = []
+    while (i < size):
+        garden.append([0])
+        j = 0
+        while (j < size - 1):
+            garden[i].append(0)
+            j += 1
+        i += 1
+    print(garden)
+    return garden
 
 def printGarden(garden): #Print garden
     for row in garden:
-        print("T",end='')
+        print(" T ",end='')
+    print("")
     for row in garden:
-        print("|",end='')
+        print("| ",end='')
         for column in row:
-            if garden[row][column] > 9:
+            if garden[row][column] > 9 or garden[row][column] < 0:
                 printValue = " "+garden[row][column]+" "
                 print(printValue,end='')
             else:
                 printValue = " "+garden[row][column]+"  "
                 print(printValue,end='')
-        print("|")
+        print(" |")
     for row in garden:
-        print("T",end='')
+        print(" T ",end='')
 
 def advanceTime(garden): #Advance garden time
     for row in garden:
         for column in row:
             plant = copy.shallowcopy(garden[row][column])
-            elif plant == 2 or plant == 12 or plant == 14:
+            if plant == 2 or plant == 12 or plant == 14:
                 plant += 1
             elif (plant >= 21 and plant < 27):
                 plant += 1
@@ -41,15 +50,39 @@ def plantPlants(garden, plant): #Plants plants in garden
             if garden[row][column] == 0:
                 garden[row][column] = plant
 
+def waterElement(x):
+    if x == 1 or x == 11 or x == 13:
+        x += 1
+    elif (x >= 21 and x < 27):
+        x += 1
+                
 def water(garden,side): #Waters sides of garden
+    height = garden.len()
+    width = garden[0].len()
     if side == "top":
-        pass
+        i = 0
+        while(i < width/2):
+            for plant in garden[i]:
+                waterElement(x)
+            i += 1
     elif side == "bot":
-        pass
+        i = garden.len()-1
+        while(i > width/2):
+            for plant in garden[i]:
+                waterElement(x)
+            i -= 1
     elif side == "left":
-        pass
-    elif side == right:
-        pass
+        for row in garden:
+            i = 0
+            while(i < width/2):
+                waterElement(garden[row][i])
+                i += 1
+    elif side == "right":
+        for row in garden:
+            i = garden[0].len()-1
+            while(i > width/2):
+                waterElement(garden[row][i])
+                i -= 1
 
 def till(garden):
     for row in garden:
@@ -83,9 +116,12 @@ def disaster(garden):
             garden[randomNum][i] = -1
             i += 1
     else:
-        pass
+        randomNum -= garden.len()
+        for row in garden:
+            garden[row][randomNum] = -1
     randomSaying = random.randrange(0,10)
     y = randomSaying
+    print('')
     if y==0:
         print('Uh oh!')
     elif y==1:
