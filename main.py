@@ -15,9 +15,11 @@ def gameOver(score):
         print("Have a nice day!")
         sys.exit()
     else:
-        size = input("What size of garden?")
+        size = int(input("What size of garden?"))
         garden = engine.initGarden(size)
-        startGame(garden)
+        turns = 10
+        score = 0
+        cultivate(garden,turns,score)
 
 def displayDetails(turns, score, garden):
     engine.disaster(garden)
@@ -54,54 +56,56 @@ while(keepGoing == False):
 
 garden = engine.initGarden(size)
 engine.printGarden(garden)
+def cultivate(garden, turns, score):
+  while(True):
+      button = input("\nplant(a) water(w) collect(s) till(d): ")
+      if button == 'a':
+          choice = input("tomatoes(a) eggplants(s) cotton(d): ")
+          if choice == 'a':
+              engine.advanceTime(garden)
+              engine.plantPlants(garden,1)
+              turns, score = displayDetails(turns, score, garden)
+          elif choice == 's':
+              engine.advanceTime(garden)
+              engine.plantPlants(garden,11)
+              turns, score = displayDetails(turns, score, garden)
+          elif choice == 'd':
+              engine.advanceTime(garden)
+              engine.plantPlants(garden,21)
+              turns, score = displayDetails(turns, score, garden)            
+          else:
+              print("--unknown command--")
+      elif button == 'w':
+          choice = input("top(w) bottom(s) left(a) right(d): ")
+          if choice == 'w':
+              engine.advanceTime(garden)
+              engine.water(garden,'top')
+              turns, score = displayDetails(turns, score, garden)
+          elif choice == 'a':
+              engine.advanceTime(garden)
+              engine.water(garden,'left')
+              turns, score = displayDetails(turns, score, garden)
+          elif choice == 's':
+              engine.advanceTime(garden)
+              engine.water(garden,'bot')
+              turns, score = displayDetails(turns, score, garden)
+          elif choice == 'd':
+              engine.advanceTime(garden)
+              engine.water(garden,'right')
+              turns, score = displayDetails(turns, score, garden)
+          else:
+              print("--unknown command--")
+      elif button == 's':
+          turns, score = engine.collect(garden, score, turns)
+          engine.advanceTime(garden)
+          turns, score = displayDetails(turns, score, garden)
+      elif button == 'd':
+          engine.till(garden)
+          engine.advanceTime(garden)
+          turns, score = displayDetails(turns, score, garden)
+      elif button == 'stop':
+          gameOver(score)
+      else: # button == 'd'
+          engine.rules()
 
-while(True):
-    button = input("\nPlant(a) water(w) collect(s) till(d): ")
-    if button == 'a':
-        choice = input("tomatoes(a) eggplants(s) cotton(d): ")
-        if choice == 'a':
-            engine.advanceTime(garden)
-            engine.plantPlants(garden,1)
-            turns, score = displayDetails(turns, score, garden)
-        elif choice == 's':
-            engine.advanceTime(garden)
-            engine.plantPlants(garden,11)
-            turns, score = displayDetails(turns, score, garden)
-        elif choice == 'd':
-            engine.advanceTime(garden)
-            engine.plantPlants(garden,21)
-            turns, score = displayDetails(turns, score, garden)            
-        else:
-            print("--unknown command--")
-    elif button == 'w':
-        choice = input("top(w) bottom(s) left(a) right(d): ")
-        if choice == 'w':
-            engine.advanceTime(garden)
-            engine.water(garden,'top')
-            turns, score = displayDetails(turns, score, garden)
-        elif choice == 'a':
-            engine.advanceTime(garden)
-            engine.water(garden,'left')
-            turns, score = displayDetails(turns, score, garden)
-        elif choice == 's':
-            engine.advanceTime(garden)
-            engine.water(garden,'bot')
-            turns, score = displayDetails(turns, score, garden)
-        elif choice == 'd':
-            engine.advanceTime(garden)
-            engine.water(garden,'right')
-            turns, score = displayDetails(turns, score, garden)
-        else:
-            print("--unknown command--")
-    elif button == 's':
-        turns, score = engine.collect(garden, score, turns)
-        engine.advanceTime(garden)
-        turns, score = displayDetails(turns, score, garden)
-    elif button == 'd':
-        engine.till(garden)
-        engine.advanceTime(garden)
-        turns, score = displayDetails(turns, score, garden)
-    elif button == 'stop':
-        gameOver(score)
-    else: # button == 'd'
-        engine.rules()
+cultivate(garden, turns, score)
