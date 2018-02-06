@@ -136,7 +136,7 @@ def disaster(garden): #Randomizes disaster in garden
     if y==0:
         print('Uh oh!')
     elif y==1:
-        print('A violent hurrican came through!')
+        print('A violent hurricane came through!')
     elif y==2:
         print('The lawn-mower went loose again!')
     elif y==3:
@@ -146,7 +146,7 @@ def disaster(garden): #Randomizes disaster in garden
     elif y==5:
         print('The moles are at it again!')
     elif y==6:
-        print('Whoopsie!')
+        print('1 in 12 plants live near an active or potentially active volcano!')
     elif y==7:
         print('The flash flood warning was too late!')
     elif y==8:
