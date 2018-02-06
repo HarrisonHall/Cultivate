@@ -15,7 +15,16 @@ def gameOver(score):
         print("Have a nice day!")
         sys.exit()
     else:
-        size = int(input("What size of garden?"))
+        keepGoing = False
+        while(keepGoing == False):
+            size = int(input("What size of garden?: "))
+            print("")
+            if (size % 2 == 1):
+                size += 1
+            if (size < 6 or size > 36):
+                print("Invalid size (try even: 6 -36)\n")
+            else:
+            keepGoing = True
         garden = engine.initGarden(size)
         turns = 10
         score = 0
