@@ -24,7 +24,7 @@ def gameOver(score):
             if (size < 6 or size > 36):
                 print("Invalid size (try even: 6 -36)\n")
             else:
-            keepGoing = True
+                keepGoing = True
         garden = engine.initGarden(size)
         turns = 10
         score = 0
