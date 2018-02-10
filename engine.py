@@ -107,15 +107,15 @@ def collect(garden, score, turnCount): #Collects ready plants
             if row[column] == 3:
                 row[column] = -1
                 score += 1
-                turnCount += .09
+                turnCount += .008
             elif row[column] == 15:
                 row[column] = -1
                 score += 2
-                turnCount += .13
+                turnCount += .016
             elif row[column] == 27:
                 row[column] = -1
                 score += 4
-                turnCount += .18
+                turnCount += .03
     return score, turnCount
 
 def disaster(garden): #Randomizes disaster in garden

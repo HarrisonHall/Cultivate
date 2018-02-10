@@ -52,6 +52,11 @@ print("\n\nC U L T I V A T E\n\nBy Harrison Hall\n")
 turns = 10
 score = 0
 
+mode = input("\nNormal(n) or Arcade(a)?: ")
+if mode == "a":
+    os.system('python3 arcade.py')
+    sys.exit()
+
 keepGoing = False
 while(keepGoing == False):
     size = int(input("What size of garden?: "))
