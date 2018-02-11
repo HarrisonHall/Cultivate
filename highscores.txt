@@ -1,11 +1,11 @@
 --Cultivate Highscores--
-1 - 0 - n/a
-2 - 0 - n/a
-3 - 0 - n/a
-4 - 0 - n/a
-5 - 0 - n/a
-6 - 0 - n/a
-7 - 0 - n/a
-8 - 0 - n/a
-9 - 0 - n/a
-10 - 0 - n/a
+1 - 20 - Harson
+2 - 18 - Janky
+3 - 15 - Bad Jackie
+4 - 15 - Brigs
+5 - 10 - Georgie
+6 - 3 - Benga
+7 - 2 - Olgs
+8 - 1 - Franku
+9 - 0 - Ricky
+10 - 0 - RIP Natty
