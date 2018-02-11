@@ -52,7 +52,7 @@ def displayScores():
         print(line,end='')
         
 def writeScores(name, score):
-    score = int(score.ceil())
+    score = int(score)
     scoreFile = open("highscores.txt","r+")
     scoreFileScores = []
     for line in scoreFile:
@@ -90,14 +90,6 @@ if os.name == "nt":
 else:
     os.system("clear")
     
-print("\n\nC U L T I V A T E\n\nBy Harrison Hall\n")
-
-turns = 10
-totalTurns = 0
-score = 0
-size = 16
-garden = engine.initGarden(size)
-engine.printGarden(garden)
 def cultivate(garden, turns, score, totalTurns):
     while(True):
         print("\nDay:",totalTurns)
@@ -107,18 +99,22 @@ def cultivate(garden, turns, score, totalTurns):
             print("\nWelcome to the new season!\n")
             garden = engine.initGarden(14)
             engine.printGarden(garden)
+            turns += 1
         elif (totalTurns == 20):
             print("\nWelcome to the new season!\n")
             garden = engine.initGarden(12)
             engine.printGarden(garden)
+            turns += 1
         elif (totalTurns == 30):
             print("\nWelcome to the new season!\n")
             garden = engine.initGarden(10)
             engine.printGarden(garden)
+            turns += 1
         elif (totalTurns != 0 and totalTurns % 10 == 0):
             print("\nWelcome to the new season!\n")
             garden = engine.initGarden(8)
             engine.printGarden(garden)
+            turns += 1
         button = input("\nplant(a) water(w) collect(s) till(d): ")
         if button == 'a':
             choice = input("tomatoes(a) eggplants(s) cotton(d): ")
@@ -178,4 +174,11 @@ def cultivate(garden, turns, score, totalTurns):
         else: # button == 'd'
             engine.rules()
 
+turns = 10
+totalTurns = 0
+score = 0
+size = 16
+garden = engine.initGarden(size)
+print("\n\"stop\" to exit, \"r\" for rules\n")
+engine.printGarden(garden)
 cultivate(garden, turns, score, totalTurns)

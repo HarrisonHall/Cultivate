@@ -52,8 +52,10 @@ print("\n\nC U L T I V A T E\n\nBy Harrison Hall\n")
 turns = 10
 score = 0
 
-mode = input("\nNormal(n) or Arcade(a)?: ")
-if mode == "a":
+mode = input("\nArcade(a) or Sandbox(s)?: ")
+if mode == "s":
+    pass
+else:
     os.system('python3 arcade.py')
     sys.exit()
 
